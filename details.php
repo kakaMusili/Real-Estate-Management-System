@@ -136,32 +136,37 @@ if(isset($_POST['purchase']))
 
 	 <!--  END OF CHECKING DETAILS OF THE SELECTED PROPERTY SECTION -->
 
-	 <!-- FOOTER SECTION -->
+	 	 <!-- FOOTER SECTION -->
 
-	 <footer class="site-footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-5">
-				<h4>Contact Address </h4>
-					<address>
-						#999, Siriba Campus,<br>
-						Maseno,<br>
-						Kenya.
-					</address>
-				</div>
-		</div>
-		<div class="bottom-footer">
-			<div class="col-md-5">&copy;Copyright Makao Bora 2017.</div>
-			<div class="col-md-7">
-				<ul class="footer-nav">
-					<li><a href="index.php">Home</a></li>
-					<li><a href="login.php">Staff Login</a></li>
-					<li><a href="contact_us.php">Contact us</a></li>
-				</ul>
-			</div>
-			</div>
-		</div>
-	 </footer>
+	 	 <footer class="site-footer">
+	 		<div class="container">
+	 			<div class="row">
+	 				<div class="col-md-5">
+	 				<h4>Contact Address </h4>
+	 					<address>
+	 						#999, +254725330643,<br>
+	 						Nairobi,<br>
+	 						Kenya.
+	 					</address>
+	 				</div>
+	 		</div>
+	 		<div class="bottom-footer">
+	 			<div class="col-md-5">&copy;Copyright Makao 2018.</div>
+	 			<div class="col-md-7">
+	 				<ul class="footer-nav">
+	 					<li><a href="index.php">Home</a></li>
+	 					<li><a href="staff_login.php">Staff Login</a></li>
+	 					<li><a href="contact_us.php">Contact us</a></li>
+	 				</ul>
+	 			</div>
+	 			</div>
+	 		</div>
+	 	 </footer>
+
+
+	 	<!-- END OF THE FOOTER -->
+
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

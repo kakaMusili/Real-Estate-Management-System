@@ -1,14 +1,17 @@
 
 <?php
-include ("includes/db.php"); 
+include ("includes/db.php");
+
+
 function get_client_orders()
 	{
+		global $con;
 			//getting personal details in full
 	    $get_customer_details="select * from orders";
 
-		$get_customer_details_results=mysql_query($get_customer_details);
-		
-		if (mysql_num_rows($get_customer_details_results)>0)
+		$get_customer_details_results=mysqli_query($con,$get_customer_details);
+
+		if (mysqli_num_rows($get_customer_details_results)>0)
 		{
 			echo "
 				<table class=' table table-bordered table-condensed table-hover table-responsive'>
@@ -24,28 +27,28 @@ function get_client_orders()
 								<th>Landlord Share</th>
 								<th>Date of Transaction</th>
 								<th>Transaction Code</th>
-								
-							</tr>";
-			
 
-				while($results_row=mysql_fetch_array($get_customer_details_results))
+							</tr>";
+
+
+				while($results_row=mysqli_fetch_array($get_customer_details_results))
 				{
 					$name=$results_row['customer_name'];
 					$idno=$results_row['customer_idno'];
 					$contact=$results_row['customer_contacts'];
 					$email=$results_row['customer_email'];
-					$property_type=$results_row['property_type'];	
-					$property_title=$results_row['property_title'];	
-					$property_price=$results_row['property_price'];	
+					$property_type=$results_row['property_type'];
+					$property_title=$results_row['property_title'];
+					$property_price=$results_row['property_price'];
 					$amount_paid=$results_row['amount_paid'];
 					$landlords_share=$results_row['landlord_amount'];
 					$transaction_code=$results_row['transaction_code'];
 					$date_of_transaction=$results_row['date_of_transaction'];
-					
-					
-						
-				
-				
+
+
+
+
+
 				echo"
 							<tr>
 								<td>$name</td>
@@ -67,7 +70,7 @@ function get_client_orders()
 			{
 				echo "You Dont Have Any Orders!!!";
 			}
-		
+
 	}
 
 
@@ -89,11 +92,11 @@ function get_client_orders()
 
   </head>
   <body>
-  
+
   <!-- NAVBAR SECTION -->
 	<div class="container-fluid">
 		<div class="row">
-			
+
 		<!--		<div class="logo"> <img src="images/makazi.png" class="img-responsive" /></div> navbar-fixed-top-->
 				<nav class="navbar navbar-default ">
 					<div class="navbar-header">
@@ -111,9 +114,9 @@ function get_client_orders()
 								<li class="active"><a href="faqs.php">FAQs</a></li>
 							</ul>
 					</div>
-					
+
 				</nav>
-			
+
 		</div>
 	</div>
 	<!--END OF NAVBAR-->
@@ -123,13 +126,13 @@ function get_client_orders()
 		<?php echo get_client_orders(); ?>
 	</div>
 	<div class="col-md-0">
-		
+
 	</div>
   </div>
   </div>
- 
+
  <!-- FOOTER SECTION -->
-	 
+
 	 <footer class="site-footer">
 		<div class="container">
 			<div class="row">
@@ -153,9 +156,9 @@ function get_client_orders()
 			</div>
 			</div>
 		</div>
-	 </footer> 
+	 </footer>
 	<!-- END OF THE FOOTER -->
-  
+
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -163,4 +166,3 @@ function get_client_orders()
 	<script type="text/javascript">
 	</body>
 </html>
-

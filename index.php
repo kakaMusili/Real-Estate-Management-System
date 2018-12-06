@@ -18,11 +18,11 @@ include ("function/function.php");
 
   </head>
   <body>
-  
+
   <!-- NAVBAR SECTION -->
 	<div class="container-fluid">
 		<div class="row">
-			
+
 		<!--		<div class="logo"> <img src="images/makazi.png" class="img-responsive" /></div> -->
 				<nav class="navbar navbar-default navbar-fixed-top">
 					<div class="navbar-header">
@@ -45,12 +45,12 @@ include ("function/function.php");
 								<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 							</ul>
 					</div>
-					
+
 				</nav>
-			
+
 		</div>
 	</div>
-  
+
   <!-- IMAGE SLIDER SECTION -->
   <div class="container-fluid slider" >
   <div id="myslider" class="carousel slide"  style="width:100%; height:450px;background:none;overflow:scroll; margin-top: 20px">
@@ -82,9 +82,9 @@ include ("function/function.php");
 		 <div class="item">
 			<img src="images/slider4.jpg"  width="100%" height=250  class="img-responsive">
 			<div class="carousel-caption">
-				<p>mpango mzima</p> 
+				<p>mpango mzima</p>
 			</div>
-		 </div>	 
+		 </div>
 	</div>
 	<a class="carousel-control left" href="#myslider" data-slide="prev">
 	<span class="glyphicon glyphicon-chevron-left"></span>
@@ -92,11 +92,11 @@ include ("function/function.php");
 	<a class="carousel-control right" href="#myslider"  data-slide="next">
 	<span class="glyphicon glyphicon-chevron-right"></span>
 	</a>
-  </div> 
   </div>
-  <!-- END OF THE IMAGE SLIDER--> 
-  
-  
+  </div>
+  <!-- END OF THE IMAGE SLIDER-->
+
+
    <!-- SEARCH SECTION -->
    <div class="container" >
 	<div class="row">
@@ -154,44 +154,44 @@ include ("function/function.php");
 				<div class="form-group">
 					<input type="submit" name="search" class="btn btn-primary" value="search">
 				</div>
-				
+
 			</fieldset>
 		</form>
 	</div>
    </div>
-   <!-- END OF THE SEARCH SECTION --> 
-   
-   
-   
+   <!-- END OF THE SEARCH SECTION -->
+
+
+
     <!-- LIST PROPERTY SECTION -->
 	<div class="container">
 	<br>
 		<div class="row">
 	<h3>Areas In Kenya </h3>
 	</div>
-	
+
 	<?php getProperty();?>
 	</div>
-	
-	<!-- END OF THE PROPERTY LIST--> 
-	
-	
+
+	<!-- END OF THE PROPERTY LIST-->
+
+
 	 <!-- FOOTER SECTION -->
-	 
+
 	 <footer class="site-footer">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-5">
 				<h4>Contact Address </h4>
 					<address>
-						#999, Siriba Campus,<br>
-						Maseno,<br>
+						#999, +254725330643,<br>
+						Nairobi,<br>
 						Kenya.
 					</address>
 				</div>
 		</div>
 		<div class="bottom-footer">
-			<div class="col-md-5">&copy;Copyright Makao Bora 2017.</div>
+			<div class="col-md-5">&copy;Copyright Makao 2018.</div>
 			<div class="col-md-7">
 				<ul class="footer-nav">
 					<li><a href="index.php">Home</a></li>
@@ -202,17 +202,17 @@ include ("function/function.php");
 			</div>
 		</div>
 	 </footer>
-	 
-	 
-	<!-- END OF THE FOOTER -->  
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
+
+
+	<!-- END OF THE FOOTER -->
+
+
+
+
+
+
+
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -220,7 +220,7 @@ include ("function/function.php");
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#myslider').carousel();
-		
+
 	}
 	);
 	</script>

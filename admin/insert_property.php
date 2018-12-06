@@ -1,11 +1,13 @@
 
 <?php
 
-include ("includes/db.php"); 
+include ("includes/db.php");
 	if(isset($_POST['insert_property'])){
-		
+
+
+		global $con;
 		//GETTING THE TEXT DATA FROM THE FIELDS
-		
+
 		$property_title=$_POST['property_title'];
 		$property_owner=$_POST['property_owner'];
 		$property_ownerID=$client_id;
@@ -17,26 +19,26 @@ include ("includes/db.php");
 		$bath=$_POST['bath'];
 		$property_loc=$_POST['property_loc'];
 		$property_keywords=$_POST['property_keywords'];
-		
+
 		//GETTING THE IMAGE FROM THE FIELD
 		$target_dir = "property_images/";
 		$target_file = $target_dir . basename($_FILES["property_image"]["name"]);
 		$uploadOk = 1;
 		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-		
-		
-			if (move_uploaded_file($_FILES["property_image"]["tmp_name"], $target_file)) 
+
+
+			if (move_uploaded_file($_FILES["property_image"]["tmp_name"], $target_file))
 			{
 				//echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 				$property_image=basename( $_FILES["property_image"]["name"]);
-				
-				
-				
+
+
+
 				$insert_list= "insert into property(property_cat,property_type,property_title,property_owner,property_image,property_price,property_desc,bed,bath,property_loc,property_keywords) values($property_cat,$property_type,'$property_title','$property_owner','$property_image',$property_price,'$property_desc',$bed,$bath,$property_loc,'$property_keywords')";
-				
-				
-								$insert_pro=mysql_query($insert_list); 
-						
+
+
+								$insert_pro=mysqli_query( $con,$insert_list);
+
 						if ($insert_pro)
 					{
 						$added = '<div class="alert alert-success">
@@ -47,22 +49,22 @@ include ("includes/db.php");
 					else
 					{
 						$added='<div class="alert alert-danger">
-									<strong>Failed!</strong> contact System Adminstrator.'.mysql_error().'
+									<strong>Failed!</strong> contact System Adminstrator.'.mysqli_error().'
 								</div>';
 					}
-								
-				
+
+
 			} else {
 				$added='<div class="alert alert-danger">
 				<strong>Failed!</strong> Sorry, there was an error uploading your file.
 				</div>';
 				echo "";
 			}
-			
 
-	
-		
-		
+
+
+
+
 	}
 	?>
 
@@ -82,11 +84,11 @@ include ("includes/db.php");
 
   </head>
   <body>
-  
+
   <!-- NAVBAR SECTION -->
 	<div class="container-fluid">
 		<div class="row">
-			
+
 		<!--		<div class="logo"> <img src="images/makazi.png" class="img-responsive" /></div> navbar-fixed-top-->
 				<nav class="navbar navbar-default ">
 					<div class="navbar-header">
@@ -104,20 +106,20 @@ include ("includes/db.php");
 								<li class="active"><a href="faqs.php">FAQs</a></li>
 							</ul>
 					</div>
-					
+
 				</nav>
-			
+
 		</div>
 	</div>
 	<!--END OF NAVBAR-->
   <div class="container">
 	<div class="row">
 	<div class="col-md-7 col-md-offset-2 well">
-  
-    <?php echo $added.'</br>'; ?>
+
+    <?php if(isset($added)){ echo $added.'</br>';} ?>
     <?php if(isset($id_error)){ echo $id_msg.'</br>';} ?>
 
-	<form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" > 
+	<form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" >
 	<fieldset>
                     <legend>Add Property </legend>
 	<div class="form-group">
@@ -131,12 +133,13 @@ include ("includes/db.php");
 		<div class="col-xs-4">
 		<select class="form-control" name="property_owner" required >
 			<?php
+			global $con;
 				$get_cats="select customer_name from customer where customer_type='2'";
-	
-				$run_cats=mysql_query($get_cats);
-				
-				while($row_cats = mysql_fetch_array($run_cats)){
-					
+
+				$run_cats=mysqli_query( $con,$get_cats);
+
+				while($row_cats = mysqli_fetch_array($run_cats)){
+
 					$client_name=$row_cats['customer_name'];
 					echo "<option value='$client_name'>$client_name</option>";
 				}
@@ -150,11 +153,11 @@ include ("includes/db.php");
 		<select class="form-control" name="property_cat" required >
 			<?php
 				$get_cats="select * from categories";
-	
-				$run_cats=mysql_query($get_cats);
-				
-				while($row_cats = mysql_fetch_array($run_cats)){
-					
+
+				$run_cats=mysqli_query( $con,$get_cats);
+
+				while($row_cats = mysqli_fetch_array($run_cats)){
+
 					$cat_id=$row_cats['cat_id'];
 					$cat_title=$row_cats['cat_title'];
 					echo "<option value='$cat_id'>$cat_title</option>";
@@ -169,11 +172,11 @@ include ("includes/db.php");
 		<select class="form-control" name="property_type" required>
 			<?php
 				$get_types="select * from types";
-	
-				$run_types=mysql_query($get_types);
-				
-				while($row_types = mysql_fetch_array($run_types)){
-					
+
+				$run_types=mysqli_query( $con, $get_types);
+
+				while($row_types = mysqli_fetch_array($run_types)){
+
 					$type_id=$row_types['type_id'];
 					$type_title=$row_types['type_title'];
 					echo "<option value='$type_id'>$type_title</option>";
@@ -182,7 +185,7 @@ include ("includes/db.php");
 		</select>
 	</div>
 	</div>
-	
+
 	<div class="form-group">
 		<label class="control-label col-xs-3">Property Image :</label>
 		<div class="col-xs-4">
@@ -195,11 +198,11 @@ include ("includes/db.php");
 		<select class="form-control" name="property_price" required>
 			<?php
 				$get_prices="select * from prices";
-	
-				$run_prices=mysql_query($get_prices);
-				
-				while($row_prices = mysql_fetch_array($run_prices)){
-					
+
+				$run_prices=mysqli_query( $con,$get_prices);
+
+				while($row_prices = mysqli_fetch_array($run_prices)){
+
 					$price_id=$row_prices['price_id'];
 					$prices=$row_prices['prices'];
 					echo "<option value='$prices'>Ksh $prices.00</option>";
@@ -214,11 +217,11 @@ include ("includes/db.php");
 		<select class="form-control" name="property_loc" required>
 			<?php
 				$get_location="select * from location";
-	
-				$run_location=mysql_query($get_location);
-				
-				while($row_location = mysql_fetch_array($run_location)){
-					
+
+				$run_location=mysqli_query( $con,$get_location);
+
+				while($row_location = mysqli_fetch_array($run_location)){
+
 					$location_id=$row_location['location_id'];
 					$location_title=$row_location['location_title'];
 					echo "<option value='$location_id'>$location_title</option>";
@@ -233,11 +236,11 @@ include ("includes/db.php");
 		<select class="form-control" name="bed" required>
 			<?php
 				$get_bed="select * from beds";
-	
-				$run_bed=mysql_query($get_bed);
-				
-				while($row_bed = mysql_fetch_array($run_bed)){
-					
+
+				$run_bed=mysqli_query( $con,$get_bed);
+
+				while($row_bed = mysqli_fetch_array($run_bed)){
+
 					$bed_id=$row_bed['bed_id'];
 					$no_of_beds=$row_bed['no of beds'];
 					echo "<option value='$bed_id'>$no_of_beds</option>";
@@ -252,11 +255,11 @@ include ("includes/db.php");
 		<select class="form-control" name="bath" required>
 			<?php
 				$get_bath="select * from baths";
-	
-				$run_bath=mysql_query($get_bath);
-				
-				while($row_bath = mysql_fetch_array($run_bath)){
-					
+
+				$run_bath=mysqli_query( $con,$get_bath);
+
+				while($row_bath = mysqli_fetch_array($run_bath)){
+
 					$baths_id=$row_bath['baths_id'];
 					$no_of_baths=$row_bath['no_of_baths'];
 					echo "<option value='$baths_id'>$no_of_baths</option>";
@@ -277,7 +280,7 @@ include ("includes/db.php");
 			<input type="input" class="form-control" name="property_keywords" required>
 		</div>
 	</div>
-	
+
 	<div class="form-group">
 		<label class="control-label col-xs-3"></label>
 		</div>
@@ -290,9 +293,9 @@ include ("includes/db.php");
   </div>
   </div>
   </div>
- 
+
  <!-- FOOTER SECTION -->
-	 
+
 	 <footer class="site-footer">
 		<div class="container">
 			<div class="row">
@@ -316,9 +319,9 @@ include ("includes/db.php");
 			</div>
 			</div>
 		</div>
-	 </footer> 
+	 </footer>
 	<!-- END OF THE FOOTER -->
-  
+
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
